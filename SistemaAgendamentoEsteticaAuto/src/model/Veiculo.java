@@ -6,13 +6,16 @@ public abstract class Veiculo {
     private String placa;
     private Cliente dono;
 
-    public Veiculo(String marca, String modelo, String placa){
+    public Veiculo(String marca, String modelo, String placa, Cliente dono){
         this.marca = marca;
         this.modelo = modelo;
         this.placa = placa;
+        this.dono = dono;
     }
 
     public abstract boolean pronto();
+
+    public abstract double getTaxaAdicional();
 
     public String getMarca(){
         return this.marca;
@@ -33,9 +36,5 @@ public abstract class Veiculo {
     @Override
     public String toString(){
         return "--- Veículo ---\nMarca: " + getMarca() + "\nModelo: " + getModelo() + "\nPlaca: " + getPlaca() + "\nDono: " + getDono();
-    }
-    public static void main(String[] args) {
-        Veiculo carro = new Carro("Volks", "Gol", "GKZ-1231");
-        System.out.println(carro.toString());
-    }
+    }    
 }
