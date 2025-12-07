@@ -27,7 +27,7 @@ public class GerenciadorDeArquivos {
 
             System.out.println("Conteúdo inserido!");
         }catch(IOException e){
-            System.err.println("Erro ao ler o arquivo: " + e.getMessage());
+            System.err.println("Erro ao salvar o arquivo: " + e.getMessage());
         }
 
         
