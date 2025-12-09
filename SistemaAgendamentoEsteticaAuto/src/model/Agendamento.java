@@ -10,7 +10,7 @@ public class Agendamento {
   private LocalTime horario;
   private int prioridade;
   private Cliente cliente;
-  private List<Servico> servicos;
+  private List<Servicos> servicos;
 
   public Agendamento(int id, LocalDate prize, LocalTime horario, Cliente cliente) {
     this.id = id;
@@ -38,14 +38,14 @@ public class Agendamento {
     }
   }
 
-  public void adicionarServico(Servico servico) {
+  public void adicionarServico(Servicos servico) {
     this.servicos.add(servico);
   }
 
   public double calcularTotal() {
     double total = 0.0;
 
-    for (Servico s : servicos) {
+    for (Servicos s : servicos) {
       total += s.getPreco();
     }
 
@@ -75,7 +75,7 @@ public class Agendamento {
     return cliente;
   }
 
-  public List<Servico> getServicos() {
+  public List<Servicos> getServicos() {
     return servicos;
   }
 
