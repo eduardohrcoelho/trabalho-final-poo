@@ -13,6 +13,7 @@ public class Moto extends Veiculo {
     this.cilindradas = 160;
   }
 
+<<<<<<< HEAD
   public int getCilindradas() {
     return this.cilindradas;
   }
@@ -34,6 +35,19 @@ public class Moto extends Veiculo {
   public double getTaxaAdicional() {
     if (this.getCilindradas() > 1000) {
       return 15.00;
+=======
+    @Override
+    public String toString(){
+        return super.toString() + " | Tipo: Moto (" + getCilindradas() + "cc)";
+    }
+    
+    // Metodo para calcular a taxa adicional de acordo com o tamanho da moto
+    public double getTaxaAdicional(){
+        if(this.getCilindradas() > 1000){
+            return 15.00;
+        }
+        return 0.0;
+>>>>>>> 1bcfe8cc3e5cc6826c237058796498c91c04e9bd
     }
     return 0.0;
   }

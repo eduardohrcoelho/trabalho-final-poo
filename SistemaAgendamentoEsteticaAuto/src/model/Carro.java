@@ -1,7 +1,17 @@
 package model;
 
+<<<<<<< HEAD
 public class Carro extends Veiculo {
   private int categoria; // 1 - Hatch, 2 - Sedan, 3 - SUV, 4 - Camionete
+=======
+public class Carro extends Veiculo{
+    private int categoria; // 1 - Hatch, 2 - Sedan, 3 - SUV, 4 - Camionete  (TROCAR PARA ENUM)
+    
+    public Carro(String marca, String modelo, String placa, int categoria){
+        super(marca, modelo, placa);
+        this.categoria = categoria;
+    }
+>>>>>>> 1bcfe8cc3e5cc6826c237058796498c91c04e9bd
 
   public Carro(String marca, String modelo, String placa, int categoria) {
     super(marca, modelo, placa);
@@ -13,6 +23,7 @@ public class Carro extends Veiculo {
     this.categoria = 1; // Categoria default é Hatch
   }
 
+<<<<<<< HEAD
   public int getCategoria() {
     return this.categoria;
   }
@@ -20,6 +31,12 @@ public class Carro extends Veiculo {
   public void setCategoria(int categoria) {
     this.categoria = categoria;
   }
+=======
+    @Override
+    public String toString(){
+       return super.toString() + " | Tipo: Carro (Cat: " + categoria + ")";
+    }
+>>>>>>> 1bcfe8cc3e5cc6826c237058796498c91c04e9bd
 
   @Override
   public String toString() {
