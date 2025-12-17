@@ -2,10 +2,11 @@ package dao;
 
 import model.Agendamento;
 import java.util.List;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class AgendamentoDAO {
-  private String arquivo = "agendamento.txt";
+  private static final String ARQUIVO = "agendamento.txt";
 
   public boolean salvar(Agendamento agendamento) {
     if (agendamento.getCliente() == null) {
@@ -18,14 +19,28 @@ public class AgendamentoDAO {
         agendamento.getHorario() + ";" +
         agendamento.getPrioridade() + ";" +
         agendamento.getCliente().getCpf();
-    GerenciadorDeArquivos.salvar(arquivo, linha);
+    GerenciadorDeArquivos.salvar(ARQUIVO, linha);
 
     return true;
   }
 
   public List<Agendamento> listar() {
     List<Agendamento> agendamentos = new ArrayList<>();
-    List<String> linhas = GerenciadorDeArquivos.ler(arquivo);
+    List<String> linhas = GerenciadorDeArquivos.ler(ARQUIVO);
+
+    for(String linha : linhas){
+      if(linha.trim().isEmpty()) continue;
+
+      try{
+        String[] dados = linha.split(";");
+
+        int id = Integer.parseInt(dados[0]);
+      }catch(Exception e){
+        System.out.println("Erro");
+      }
+
+
+    }
     return agendamentos;
   }
 
