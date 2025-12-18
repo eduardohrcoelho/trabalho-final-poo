@@ -54,13 +54,9 @@ public class Cliente {
 
   public String getCpf() {return this.cpf;}
   public void setCpf(String cpf) {
-      try {
-        validarCPF(cpf);
-        this.cpf = cpf;
-      } catch (IllegalArgumentException e) {
-        System.err.println("Erro ao cadastrar o CPF: " + e.getMessage());
-      }
-    }
+      validarCPF(cpf);
+      this.cpf = cpf;
+  }
   public Veiculo getVeiculo() {return this.veiculo;}
   public void setVeiculo(Veiculo veiculo) {this.veiculo = veiculo;}
 
