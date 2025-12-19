@@ -11,22 +11,38 @@ public class Agendamento {
   private int prioridade;
   private Cliente cliente;
   private List<Servicos> servicos;
+  private Veiculo veiculo; // Adicionei atributo veiculo
+  private Pagamento pagamento; // Adicionei atributo pagamento
 
-  public Agendamento(int id, LocalDate prazo, LocalTime horario, Cliente cliente) {
+  public Agendamento(){
+    this.servicos = new ArrayList<>();
+  }
+
+  public Agendamento(Cliente cliente, Veiculo veiculo, LocalDate prazo, LocalTime horario){
+    this.cliente = cliente;
+    this.veiculo = veiculo;
+    this.prazo = prazo;
+    this.horario = horario;
+    this.servicos = new ArrayList<>();
+    definirPrioridade();
+  }
+
+  public Agendamento(int id, Cliente cliente, Veiculo veiculo, LocalDate prazo, LocalTime horario) {
     this.id = id;
     this.prazo = prazo;
     this.horario = horario;
     this.cliente = cliente;
+    this.veiculo = veiculo;
     this.servicos = new ArrayList<>();
     definirPrioridade();
   }
 
   public void definirPrioridade() {
+    if(this.prazo == null) return; // Verificação para que exista prazo
+    
     LocalDate hoje = LocalDate.now();
-
     long diasHoje = hoje.toEpochDay();
     long diasPrazo = this.prazo.toEpochDay();
-
     long diferenca = diasPrazo - diasHoje;
 
     if (diferenca <= 0) {
@@ -41,6 +57,10 @@ public class Agendamento {
   public void adicionarServico(Servicos servico) {
     this.servicos.add(servico);
   }
+  // Adicionei metodo remover
+  public void removerServico(Servicos servico){
+    this.servicos.remove(servico);
+  }
 
   public double calcularTotal() {
     double total = 0.0;
@@ -49,45 +69,46 @@ public class Agendamento {
       total += s.getPreco();
     }
 
-    if (cliente != null && cliente.getVeiculo() != null) {
-      total += cliente.getVeiculo().getTaxaAdicional();
+    if (cliente != null && veiculo != null) {
+      //total += veiculo.getTaxaAdicional(); ARRUMAR ESSE CALCULO
     }
     return total;
   }
 
-  public int getId() {
-    return id;
+  // Adicionei Setters
+  public int getId() {return id;}
+  public void setId(int id){this.id = id;}
+
+  public LocalDate getPrazo() {return prazo;}
+  public void setPrazo(LocalDate prazo){
+    this.prazo = prazo;
+    definirPrioridade();
   }
 
-  public LocalDate getPrazo() {
-    return prazo;
-  }
+  public LocalTime getHorario() {return horario;}
+  public void setHorario(LocalTime horario){this.horario = horario;}
 
-  public LocalTime getHorario() {
-    return horario;
-  }
+  public int getPrioridade() {return prioridade;}
 
-  public int getPrioridade() {
-    return prioridade;
-  }
+  public Cliente getCliente() {return cliente;}
+  public void setCliente(Cliente cliente){this.cliente = cliente;}
 
-  public Cliente getCliente() {
-    return cliente;
-  }
+  public Veiculo getVeiculo(){return veiculo;}
+  public void setVeiculo(Veiculo veiculo){this.veiculo = veiculo;}
 
-  public List<Servicos> getServicos() {
-    return servicos;
-  }
+  public List<Servicos> getServicos() {return servicos;}
+
+  public Pagamento getPagamento(){return pagamento;}
+  public void setPagamento(Pagamento pagamento){this.pagamento = pagamento;}
 
   @Override
-  public String toString() {
-    // TODO Auto-generated method stub
-    return "Agendamento #" + id +
-        " | Data: " + prazo + " às " + horario +
-        " | Prioridade: " + prioridade +
-        " | Cliente: " + (cliente != null ? cliente.getNome() : "N/A") +
-        " | Total: R$" + String.format("%.2f", calcularTotal());
+    public String toString() {
+        String nomeCliente = (cliente != null) ? cliente.getNome() : "Sem Cliente";
+        String descVeiculo = (veiculo != null) ? veiculo.toString() : "Sem Veículo";
+        String statusPag = (pagamento != null) ? pagamento.getStatus().toString() : "Ñ Gerado";
 
-  }
+        return String.format("ID: %d | Data: %s às %s | %s | %s | Total: R$ %.2f | Pag: %s",
+                id, prazo, horario, nomeCliente, descVeiculo, calcularTotal(), statusPag);
+    }
 
 }
