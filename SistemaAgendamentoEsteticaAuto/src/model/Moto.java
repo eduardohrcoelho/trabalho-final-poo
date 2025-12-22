@@ -2,7 +2,7 @@ package model;
 
 import model.enums.TiposDeServicos;
 
-public class Moto extends Veiculo implements DefinicoesServicos {
+public class Moto extends Veiculo  {
   private int cilindradas;
   private TiposDeServicos servicos;
 
@@ -48,7 +48,7 @@ public class Moto extends Veiculo implements DefinicoesServicos {
   }
 
   @Override
-  public int calcularPrazoEstimado() {
+  public int calcularPrazoEstimado(Servicos servico) {
     switch (servicos) {
       case LAVAGEM_SIMPLES:
         return 1;

@@ -1,15 +1,16 @@
 package model;
 
-public abstract class Veiculo {
+public abstract class Veiculo implements DefinicoesServicos {
   protected String marca;
   protected String modelo;
   protected String placa;
   protected boolean pronto;
   private int id;
 
-  public Veiculo(){}
+  public Veiculo() {
+  }
 
-  public Veiculo(int id, String marca, String modelo, String placa){
+  public Veiculo(int id, String marca, String modelo, String placa) {
     this.id = id;
     this.marca = marca;
     this.modelo = modelo;
@@ -24,12 +25,17 @@ public abstract class Veiculo {
   }
 
   public abstract boolean getPronto();
-  
+  public abstract int calcularPrazoEstimado(Servicos servico);
+  public abstract double calcularPrecoEspecifico();
   public abstract void setPronto();
 
+  public int getId() {
+    return id;
+  }
 
-  public int getId(){return id;}
-  public void setId(int id){this.id = id;}
+  public void setId(int id) {
+    this.id = id;
+  }
 
   public String getMarca() {
     return this.marca;

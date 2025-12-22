@@ -6,8 +6,8 @@ import java.util.*;
 
 public class Agendamento {
   private int id;
-  private LocalDate prazo;
-  private LocalTime horario;
+  //private LocalDate prazo;
+  //private LocalTime horario;
   private int prioridade;
   private Cliente cliente;
   private List<Servicos> servicos;
@@ -18,40 +18,33 @@ public class Agendamento {
     this.servicos = new ArrayList<>();
   }
 
-  public Agendamento(Cliente cliente, Veiculo veiculo, LocalDate prazo, LocalTime horario){
+  public Agendamento(Cliente cliente, Veiculo veiculo, Servicos servico){
     this.cliente = cliente;
     this.veiculo = veiculo;
-    this.prazo = prazo;
-    this.horario = horario;
+    this.definirPrioridade(veiculo, servico);
     this.servicos = new ArrayList<>();
-    definirPrioridade();
+    
   }
 
   public Agendamento(int id, Cliente cliente, Veiculo veiculo, LocalDate prazo, LocalTime horario) {
     this.id = id;
-    this.prazo = prazo;
-    this.horario = horario;
+    //this.prazo = prazo;
+    //this.horario = horario;
     this.cliente = cliente;
     this.veiculo = veiculo;
     this.servicos = new ArrayList<>();
-    definirPrioridade();
+    //definirPrioridade();
   }
 
-  public void definirPrioridade() {
-    if(this.prazo == null) return; // Verificação para que exista prazo
+  public void definirPrioridade(Veiculo veiculo, Servicos servico) {
+    LocalDate dataEntrega;
+    //if(this.prazo == null) return; // Verificação para que exista prazo
     
-    LocalDate hoje = LocalDate.now();
-    long diasHoje = hoje.toEpochDay();
-    long diasPrazo = this.prazo.toEpochDay();
-    long diferenca = diasPrazo - diasHoje;
+    LocalDate dataAtual = LocalDate.now();
+    dataEntrega = dataAtual.plusDays(veiculo.calcularPrazoEstimado(servico)); 
+    int diaEntrega = dataEntrega.getDayOfMonth();
 
-    if (diferenca <= 0) {
-      this.prioridade = 1;
-    } else if (diferenca <= 2) {
-      this.prioridade = 2;
-    } else {
-      this.prioridade = 3;
-    }
+    this.prioridade = diaEntrega - dataAtual.getDayOfMonth();
   }
 
   public void adicionarServico(Servicos servico) {
