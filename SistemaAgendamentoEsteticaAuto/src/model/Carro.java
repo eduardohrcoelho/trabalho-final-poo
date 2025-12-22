@@ -3,7 +3,7 @@ package model;
 import model.enums.CategoriaCarro;
 import model.enums.TiposDeServicos;
 
-public class Carro extends Veiculo implements DefinicoesServicos {
+public class Carro extends Veiculo  {
   private CategoriaCarro categoria;
   private TiposDeServicos servicos; // 1 - Hatch, 2 - Sedan, 3 - SUV, 4 - Camionete
 
@@ -52,7 +52,7 @@ public class Carro extends Veiculo implements DefinicoesServicos {
   }
 
   @Override
-  public int calcularPrazoEstimado() {
+  public int calcularPrazoEstimado(Servicos servico) {
     switch (this.servicos) {
       case INSULFILM:
         return 3;
@@ -73,4 +73,6 @@ public class Carro extends Veiculo implements DefinicoesServicos {
     }
     return 0;
   }
+
+
 }
