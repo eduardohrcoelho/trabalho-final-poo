@@ -1,12 +1,11 @@
 package dao;
 
-import model.Veiculo;
-import model.enums.CategoriaCarro;
-import model.Carro;
-import model.Moto;
-
 import java.util.ArrayList;
 import java.util.List;
+import model.Carro;
+import model.Moto;
+import model.Veiculo;
+import model.enums.CategoriaCarro;
 
 public class VeiculoDAO implements IDAO<Veiculo> {
 
@@ -40,7 +39,7 @@ public class VeiculoDAO implements IDAO<Veiculo> {
             Moto m = (Moto) v;
             sb.append(m.getCilindradas()); 
         }
-
+        
         GerenciadorDeArquivos.salvar(ARQUIVO, sb.toString());
         return true;
     }
