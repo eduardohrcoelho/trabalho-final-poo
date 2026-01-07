@@ -22,7 +22,7 @@ public class TelaCatalogoServicos extends JFrame {
   public TelaCatalogoServicos() {
     super("Catálogo de Serviços - EDS");
     setSize(700, 500);
-    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     setResizable(false);
     setLocationRelativeTo(null); // Centraliza a janela.
     setLayout(null); // Layout nulo para usar setBounds.
