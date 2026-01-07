@@ -2,3 +2,5 @@
 2;MOTO;6HJ9-2030;Honda;Fan;160
 3;CARRO;aaa;lalau;aaa;HATCH
 
+4;CARRO;1233ABC;Chevrollet;Cruze;SEDAN
+5;CARRO;1234ABC;Porsche;911 GT3RS;HATCH

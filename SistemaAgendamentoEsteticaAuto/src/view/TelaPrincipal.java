@@ -44,7 +44,7 @@ public class TelaPrincipal extends JFrame {
     // Botões
     JButton btnVeiculos = criarBotao("Meus Veículos", "Cadastre ou gerencie seus carros", 50, 120);
     btnVeiculos.addActionListener(e -> {
-      JOptionPane.showMessageDialog(null, "Abrindo Meus Veículos...");
+      new TelaCadastroVeiculo(null, null).setVisible(true);
     });
     add(btnVeiculos);
 
@@ -56,13 +56,13 @@ public class TelaPrincipal extends JFrame {
 
     JButton btnServicos = criarBotao("Serviços", "Lista de serviços oferecidos", 50, 280);
     btnServicos.addActionListener(e -> {
-      JOptionPane.showMessageDialog(null, "Abrindo Lista de Serviços...");
+      new TelaCatalogoServicos().setVisible(true);
     });
     add(btnServicos);
 
     JButton btnHistorico = criarBotao(" Meus Agendamentos", "Veja o que já foi feito", 50, 360);
     btnHistorico.addActionListener(e -> {
-      JOptionPane.showMessageDialog(null, "Abrindo Histórico...");
+      new TelaMeusAgendamentos().setVisible(true);
     });
     add(btnHistorico);
 
