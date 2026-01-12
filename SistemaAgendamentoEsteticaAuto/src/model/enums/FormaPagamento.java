@@ -6,3 +6,9 @@ public enum FormaPagamento {
   DEBITO,
   CREDITO;
 }
+
+
+
+
+
+
