@@ -13,8 +13,8 @@ public class ClienteDAO implements IDAO<Cliente> {
     cliente.setId(id);
     String linha = cliente.getId() + ";" +
         cliente.getNome() + ";" +
-        cliente.getCpf() + ";" + // Ordem corrigida
-        cliente.getTelefone() + ";" + // Ordem corrigida
+        cliente.getCpf() + ";" + 
+        cliente.getTelefone() + ";" + 
         cliente.getLogin() + ";" +
         cliente.getSenha();
     GerenciadorDeArquivos.salvar(ARQUIVO, linha);
@@ -35,8 +35,8 @@ public class ClienteDAO implements IDAO<Cliente> {
 
         int id = Integer.parseInt(dados[0]);
         String nome = dados[1];
-        String cpf = dados[2]; // Estava trocado no seu código original
-        String telefone = dados[3]; // Estava trocado no seu código original
+        String cpf = dados[2]; 
+        String telefone = dados[3]; 
         String login = dados[4];
         String senha = dados[5];
 
@@ -119,7 +119,7 @@ public class ClienteDAO implements IDAO<Cliente> {
 
   // Método para buscar objeto específico pelo ID
   public Cliente buscarPorId(int idBusca) {
-    List<Cliente> todos = listar(); // Reaproveita o método listar que já faz o parse correto
+    List<Cliente> todos = listar(); 
     for (Cliente c : todos) {
       if (c.getId() == idBusca) {
         return c;

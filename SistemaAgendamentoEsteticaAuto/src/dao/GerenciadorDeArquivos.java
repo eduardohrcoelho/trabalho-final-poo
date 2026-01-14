@@ -65,11 +65,6 @@ public class GerenciadorDeArquivos {
   }
 
   // Método sobrescrever (UPDATE/DELETE)
-  /*
-   * Lógica: Como não é possível deletar uma linha específica no arquivo .txt,
-   * passamos a lista atualizada (sem o item removido) e gravamos tudo por cima do
-   * arquivo antigo
-   */
   public static void sobrescrever(String nomeArquivo, List<String> novasLinhas) {
     File arquivo = new File(nomeArquivo);
 

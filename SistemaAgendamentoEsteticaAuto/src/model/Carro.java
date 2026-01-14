@@ -10,11 +10,6 @@ public class Carro extends Veiculo {
     this.categoria = categoria;
   }
 
-  // public Carro(String marca, String modelo, String placa) {
-  // super(marca, modelo, placa);
-  // this.categoria = 1; // Categoria default é Hatch
-  // }
-
   public CategoriaCarro getCategoria() {
     return this.categoria;
   }

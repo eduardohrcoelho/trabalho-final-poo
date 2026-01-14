@@ -5,7 +5,6 @@ import java.time.LocalTime;
 import java.util.*;
 
 import exceptions.AgendamentoException;
-import model.enums.TiposDeServicos;
 
 public class Agendamento {
   private int id;
@@ -13,7 +12,6 @@ public class Agendamento {
   private int prioridade;
   private Cliente cliente;
   private List<Servicos> servicos;
-  private TiposDeServicos tiposDeServicos;
   private LocalDate dataEntregaCliente;
   private LocalDate dataEntrega;
   private Veiculo veiculo; // Adicionei atributo veiculo
@@ -45,12 +43,10 @@ public class Agendamento {
     this.dataEntregaCliente = dataEntregaCliente;
     this.horario = horario;
     this.prioridade = prioridade;
-    // O pagamento começa null e é setado depois pelo DAO se existir
   }
 
   public void definirPrazos(Veiculo veiculo, Servicos servico, LocalDate dataEntregaCliente) {
     LocalDate dataEntrega;
-    // if(this.prazo == null) return; // Verificação para que exista prazo
 
     LocalDate dataAtual = dataEntregaCliente;
     dataEntrega = dataAtual.plusDays(veiculo.calcularPrazoEstimado(servico));
