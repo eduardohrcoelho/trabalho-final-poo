@@ -160,17 +160,20 @@ public class TelaMeusVeiculos extends JDialog {
         tela.setVisible(true);
     }
 
-    private void excluirVeiculo(Veiculo v){
-        int confirm =JOptionPane.showConfirmDialog(this,"Tem certeza que deseja excluir o veículo placa " + v.getPlaca() + "?", 
-                                            "Excluir", JOptionPane.YES_NO_OPTION); 
+    private void excluirVeiculo(Veiculo v) {
+        int confirm = JOptionPane.showConfirmDialog(this,
+                "Tem certeza que deseja excluir o veículo placa " + v.getPlaca() + "?",
+                "Excluir", JOptionPane.YES_NO_OPTION);
 
-        if(dao.deletar(v.getId())){
-            JOptionPane.showMessageDialog(this, "Veículo excluído com sucesso!");
+        if(confirm == JOptionPane.YES_OPTION){
+            if (dao.deletar(v.getId())) {
+                JOptionPane.showMessageDialog(this, "Veículo excluído com sucesso!");
                 atualizarLista();
-        }else{
-            JOptionPane.showMessageDialog(this, "Erro ao excluir veículo.");
+            } else {
+                JOptionPane.showMessageDialog(this, "Erro ao excluir veículo.");
+            }
         }
-
+        
 
     }
 

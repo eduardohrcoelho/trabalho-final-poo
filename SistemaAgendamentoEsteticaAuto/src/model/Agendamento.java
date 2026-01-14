@@ -5,6 +5,7 @@ import java.time.LocalTime;
 import java.util.*;
 
 import exceptions.AgendamentoException;
+import model.enums.TiposDeServicos;
 
 public class Agendamento {
   private int id;
@@ -12,8 +13,9 @@ public class Agendamento {
   private int prioridade;
   private Cliente cliente;
   private List<Servicos> servicos;
+  private TiposDeServicos tiposDeServicos;
   private LocalDate dataEntregaCliente;
-  private String dataEntrega;
+  private LocalDate dataEntrega;
   private Veiculo veiculo; // Adicionei atributo veiculo
   private Pagamento pagamento; // Adicionei atributo pagamento
 
@@ -53,7 +55,7 @@ public class Agendamento {
     int diaEntrega = dataEntrega.getDayOfMonth();
 
     this.prioridade = diaEntrega - dataAtual.getDayOfMonth();
-    this.dataEntrega = diaEntrega + "-" + dataEntrega.getMonthValue() + "-" + dataEntrega.getYear();
+    this.dataEntrega = dataEntrega;
   }
 
   public void adicionarServico(Servicos servico) {
@@ -136,11 +138,11 @@ public class Agendamento {
     this.pagamento = pagamento;
   }
 
-  public String getDataEntrega() {
+  public LocalDate getDataEntrega() {
     return dataEntrega;
   }
 
-  public void setDataEntrega(String dataEntrega) {
+  public void setDataEntrega(LocalDate dataEntrega) {
     this.dataEntrega = dataEntrega;
   }
 

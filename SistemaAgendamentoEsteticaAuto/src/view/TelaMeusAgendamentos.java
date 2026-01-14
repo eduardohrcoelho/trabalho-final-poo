@@ -45,7 +45,7 @@ public class TelaMeusAgendamentos extends JFrame {
 
     // Configuração da Tabela
 
-    String[] colunas = { "ID", "Data", "Hora", "Pagamento", "Valor (R$)" };
+    String[] colunas = { "ID", "Serviço","Data", "Hora",  "Pagamento", "Valor (R$)" };
     modeloTabela = new DefaultTableModel(colunas, 0) {
       public boolean isCellEditable(int row, int column) {
         return false;
@@ -99,6 +99,7 @@ public class TelaMeusAgendamentos extends JFrame {
     DateTimeFormatter formatadorView = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     for (Agendamento a : lista) {
+      int cont =0;
       // Verificação de segurança (CPF do cliente logado)
       if (a.getCliente() != null && a.getCliente().getCpf().equals(clienteLogado.getCpf())) {
         String dataExibicao;
@@ -112,6 +113,7 @@ public class TelaMeusAgendamentos extends JFrame {
 
         Object[] linha = {
             a.getId(),
+            a.getServicos().get(cont).getTipos(),
             dataExibicao, // Essa variável é garantidamente uma String
             a.getHorario(),
             a.getPagamento().getStatus(),
@@ -121,6 +123,7 @@ public class TelaMeusAgendamentos extends JFrame {
         modeloTabela.addRow(linha);
         encontrou = true;
       }
+      cont++;
     }
   }
 

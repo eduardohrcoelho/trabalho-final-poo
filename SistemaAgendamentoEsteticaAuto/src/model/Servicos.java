@@ -69,6 +69,10 @@ public class Servicos {
     return this.descricao;
   }
 
+  public TiposDeServicos imprimeTipo(){
+    return this.getTipos();
+  }
+
   @Override
   public String toString() {
     return "Descrição: " + this.descricao + "\nPreço: R$" + String.format("%.2f", this.preco);
