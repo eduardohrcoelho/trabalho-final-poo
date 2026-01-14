@@ -119,56 +119,22 @@ public class TelaMeusVeiculos extends JDialog {
       detalhes += "Moto - " + ((Moto) v).getCilindradas() + "cc";
 
     }
-    detalhes += "</html>";
 
-    JLabel lblInfo = new JLabel(detalhes);
-    lblInfo.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-    card.add(lblInfo, BorderLayout.CENTER);
+    private void excluirVeiculo(Veiculo v) {
+        int confirm = JOptionPane.showConfirmDialog(this,
+                "Tem certeza que deseja excluir o veículo placa " + v.getPlaca() + "?",
+                "Excluir", JOptionPane.YES_NO_OPTION);
 
-    JPanel pnlBotoes = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-    pnlBotoes.setBackground(Color.white);
+        if(confirm == JOptionPane.YES_OPTION){
+            if (dao.deletar(v.getId())) {
+                JOptionPane.showMessageDialog(this, "Veículo excluído com sucesso!");
+                atualizarLista();
+            } else {
+                JOptionPane.showMessageDialog(this, "Erro ao excluir veículo.");
+            }
+        }
+        
 
-    JButton btnEditar = new JButton("Alterar");
-    btnEditar.setBackground(Color.decode("#f1c40f")); // Amarelo
-    btnEditar.addActionListener(e -> abrirTelaCadastro(v));
-
-    JButton btnExcluir = new JButton("Excluir");
-    btnExcluir.setBackground(Color.decode("#e74c3c")); // Vermelho
-    btnExcluir.setForeground(Color.WHITE);
-    btnExcluir.addActionListener(e -> excluirVeiculo(v));
-
-    pnlBotoes.add(btnEditar);
-    pnlBotoes.add(btnExcluir);
-
-    card.add(pnlBotoes, BorderLayout.EAST);
-    return card;
-  }
-
-  private void abrirTelaCadastro(Veiculo veiculoParaEditar) {
-    Frame parentFrame = (Frame) SwingUtilities.getWindowAncestor(this);
-    TelaCadastroVeiculo tela = new TelaCadastroVeiculo(parentFrame, veiculoParaEditar);
-    tela.addWindowListener(new WindowAdapter() {
-      @Override
-      public void windowClosed(WindowEvent e) {
-        // Atualiza a lista. Se o usuário salvou um carro novo, ele aparecerá aqui
-        // agora.
-        atualizarLista();
-      }
-    });
-
-    tela.setVisible(true);
-  }
-
-  private void excluirVeiculo(Veiculo v) {
-    int confirm = JOptionPane.showConfirmDialog(this,
-        "Tem certeza que deseja excluir o veículo placa " + v.getPlaca() + "?",
-        "Excluir", JOptionPane.YES_NO_OPTION);
-
-    if (dao.deletar(v.getId())) {
-      JOptionPane.showMessageDialog(this, "Veículo excluído com sucesso!");
-      atualizarLista();
-    } else {
-      JOptionPane.showMessageDialog(this, "Erro ao excluir veículo.");
     }
 
   }

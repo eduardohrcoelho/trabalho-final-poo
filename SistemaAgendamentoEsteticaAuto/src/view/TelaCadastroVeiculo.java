@@ -93,11 +93,15 @@ public class TelaCadastroVeiculo extends JDialog {// extends JFrame significa qu
     btnCancelar.setCursor(new Cursor(Cursor.HAND_CURSOR));
     btnCancelar.addActionListener(e -> dispose());
     add(btnCancelar);
+    btnCancelar.addActionListener(e -> dispose());
+    add(btnCancelar);
 
     if (veiculoEdicao != null) {
-      preencherDadosEdicao();
-
+        preencherDadosEdicao(); // Esse método já chama alternarCampos internamente
+    } else {// Força a atualização visual para esconder os campos de Moto assim que abrir
+        alternarCampos(); 
     }
+    if (veiculoEdicao != null) {preencherDadosEdicao();}
   }
 
   private void preencherDadosEdicao() {
