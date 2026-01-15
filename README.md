@@ -51,10 +51,7 @@ O projeto segue estritamente o padrão **MVC**:
 2.  **Controller:** Intermediam a comunicação, validam dados (CPFs, datas) e chamam o DAO.
 3.  **Model:** Classes de domínio (`Cliente`, `Carro`, `Agendamento`) e Enums.
 4.  **DAO:** Camada de acesso a dados responsável por ler e escrever nos arquivos `.txt`.
-
-### Diagrama de Classes
-*(Insira aqui a imagem do diagrama UML que geramos, ex: `assets/diagrama_uml.png`)*
-
+   
 ---
 
 ## 🚀 Como Executar o Projeto
